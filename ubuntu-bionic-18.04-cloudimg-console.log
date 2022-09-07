@@ -1,0 +1,157 @@
+[  554.884345] INFO: rcu_sched self-detected stall on CPU
+[  554.885262] INFO: rcu_sched detected stalls on CPUs/tasks:
+[  554.889508] 	0-...!: (1 ticks this GP) idle=ba2/140000000000001/0 softirq=163/163 fqs=0 
+[  554.899631] 	 (t=138355 jiffies g=-265 c=-266 q=9390)
+[  554.899656] 	0-...!: (1 ticks this GP) idle=ba2/140000000000001/0 softirq=163/163 fqs=0 
+[  554.899656] 	(detected by 1, t=138355 jiffies, g=-265, c=-266, q=9390)
+[  554.899676] rcu_sched kthread starved for 138355 jiffies! g18446744073709551351 c18446744073709551350 f0x0 RCU_GP_WAIT_FQS(3) ->state=0x402 ->cpu=0
+[  554.899716] Sending NMI from CPU 1 to CPUs 0:
+[  554.899730] rcu_sched       I    0     8      2 0x80000000
+[  554.899785] Call Trace:
+[  554.901078]  __schedule+0x24e/0x890
+[  554.901079]  schedule+0x2c/0x80
+[  554.901080]  schedule_timeout+0x15d/0x370
+[  554.901081]  ? __next_timer_interrupt+0xe0/0xe0
+[  554.901081]  rcu_gp_kthread+0x53a/0x980
+[  554.901097]  kthread+0x121/0x140
+[  554.901099]  ? rcu_note_context_switch+0x150/0x150
+[  554.901100]  ? kthread_create_worker_on_cpu+0x70/0x70
+[  554.901101]  ret_from_fork+0x35/0x40
+[  554.901813] NMI backtrace for cpu 0
+[  554.901814] CPU: 0 PID: 149 Comm: systemd-udevd Tainted: G             L   4.15.0-192-generic #203-Ubuntu
+[  554.901815] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[  554.901815] RIP: 0010:get_stack_info+0x0/0x160
+[  554.901815] RSP: 0018:ffff9f8b7fc03cf8 EFLAGS: 00010002
+[  554.901816] RAX: ffffc0c7001d3d68 RBX: ffff9f8b7fc03d78 RCX: ffff9f8b7fc03d98
+[  554.901816] RDX: ffff9f8b7fc03d78 RSI: ffff9f8b7c7195c0 RDI: ffffc0c7001d3d98
+[  554.901817] RBP: ffff9f8b7fc03d18 R08: 000000fbd4e0d0c5 R09: 000000000000000b
+[  554.901817] R10: 0000000000000000 R11: 0000000000000505 R12: ffffc0c7001d3d68
+[  554.901817] R13: ffffc0c7001d3d98 R14: ffff9f8b7fc03d78 R15: ffff9f8b7c7195c0
+[  554.901818] FS:  00007fdb9b778680(0000) GS:ffff9f8b7fc00000(0000) knlGS:0000000000000000
+[  554.901818] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  554.901818] CR2: 000056479bd94da8 CR3: 00000000365bc000 CR4: 00000000000006f0
+[  554.901818] Call Trace:
+[  554.901818]  <IRQ>
+[  554.901819]  ? __unwind_start+0x84/0x120
+[  554.901819]  show_trace_log_lvl+0x333/0x3d0
+[  554.901819]  show_stack+0x34/0x50
+[  554.901819]  sched_show_task+0xfe/0x130
+[  554.901819]  rcu_check_gp_kthread_starvation+0xad/0xc0
+[  554.901819]  rcu_check_callbacks+0x6c5/0x8e0
+[  554.901820]  ? tick_sched_do_timer+0x50/0x50
+[  554.901820]  update_process_times+0x2f/0x60
+[  554.901820]  tick_sched_handle+0x26/0x70
+[  554.901820]  ? tick_sched_do_timer+0x42/0x50
+[  554.901820]  tick_sched_timer+0x39/0x80
+[  554.901821]  __hrtimer_run_queues+0xdf/0x230
+[  554.901821]  hrtimer_interrupt+0xa0/0x1d0
+[  554.901821]  smp_apic_timer_interrupt+0x6f/0x140
+[  554.901821]  apic_timer_interrupt+0x90/0xa0
+[  554.901821]  </IRQ>
+[  554.901821] RIP: 0010:mutex_spin_on_owner+0x3b/0xa0
+[  554.901822] RSP: 0018:ffffc0c700457c50 EFLAGS: 00010246 ORIG_RAX: ffffffffffffff11
+[  554.901836] RAX: 0000000000000000 RBX: ffffffffb96ead4c RCX: 0000000000000000
+[  554.901836] RDX: 0000000000000000 RSI: ffff9f8b76852b80 RDI: 0000000000000001
+[  554.901836] RBP: ffffc0c700457c50 R08: ffffffffb96ead40 R09: ffffffffc00de000
+[  554.901837] R10: ffffc0c700457cf8 R11: ffffffffff000000 R12: ffffffffc00d5dc0
+[  554.901837] R13: 0000000000000002 R14: ffffffffb96ead40 R15: ffffffffb96ead40
+[  554.901837]  __mutex_lock.isra.5+0xad/0x4e0
+[  554.901837]  ? layout_and_allocate+0xd1b/0xeb0
+[  554.901838]  ? layout_and_allocate+0xbce/0xeb0
+[  554.901838]  __mutex_lock_slowpath+0x13/0x20
+[  554.901838]  ? __mutex_lock_slowpath+0x13/0x20
+[  554.901838]  mutex_lock+0x2f/0x40
+[  554.901838]  load_module+0x169/0x2000
+[  554.901839]  ? ima_post_read_file+0x96/0xa0
+[  554.901839]  ? security_kernel_post_read_file+0x71/0x80
+[  554.901839]  ? kernel_read_file+0x1a8/0x1d0
+[  554.901840]  SYSC_finit_module+0xfc/0x120
+[  554.901840]  ? SYSC_finit_module+0xfc/0x120
+[  554.901840]  SyS_finit_module+0xe/0x10
+[  554.901840]  do_syscall_64+0x73/0x130
+[  554.901840]  entry_SYSCALL_64_after_hwframe+0x41/0xa6
+[  554.901841] RIP: 0033:0x7fdb9b27f539
+[  554.901841] RSP: 002b:00007ffee7cde868 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+[  554.901841] RAX: ffffffffffffffda RBX: 000056479bda4d70 RCX: 00007fdb9b27f539
+[  554.901842] RDX: 0000000000000000 RSI: 00007fdb9af5e105 RDI: 0000000000000005
+[  554.901842] RBP: 00007fdb9af5e105 R08: 0000000000000000 R09: 000056479bd94a60
+[  554.901842] R10: 0000000000000005 R11: 0000000000000246 R12: 0000000000000000
+[  554.901843] R13: 000056479bda5300 R14: 0000000000020000 R15: 000056479bda4d70
+[  554.901843] Code: 83 ff 04 48 c7 c0 df b4 2b b9 74 10 83 ef 05 83 ff 03 77 0a 48 8b 04 fd c0 4d 00 b9 5d c3 31 c0 5d c3 66 0f 1f 84 00 00 00 00 00 <0f> 1f 44 00 00 55 48 85 ff 48 89 e5 41 56 41 55 41 54 53 48 89 
+[  554.901847] INFO: NMI handler (nmi_cpu_backtrace_handler) took too long to run: 1.092 msecs
+[  554.901849] rcu_sched kthread starved for 138355 jiffies! g18446744073709551351 c18446744073709551350 f0x0 RCU_GP_WAIT_FQS(3) ->state=0x0 ->cpu=0
+[  554.901850] NMI backtrace for cpu 0
+[  554.901851] rcu_sched       R  running task        0     8      2 0x80000000
+[  554.901852] Call Trace:
+[  554.901855]  __schedule+0x24e/0x890
+[  554.901856]  schedule+0x2c/0x80
+[  554.901856]  schedule_timeout+0x15d/0x370
+[  554.901857]  ? __next_timer_interrupt+0xe0/0xe0
+[  554.901858]  rcu_gp_kthread+0x53a/0x980
+[  554.901860]  kthread+0x121/0x140
+[  554.901860]  ? rcu_note_context_switch+0x150/0x150
+[  554.901861]  ? kthread_create_worker_on_cpu+0x70/0x70
+[  554.901862]  ret_from_fork+0x35/0x40
+[  554.901865] CPU: 0 PID: 149 Comm: systemd-udevd Tainted: G             L   4.15.0-192-generic #203-Ubuntu
+[  554.901866] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[  554.901866] Call Trace:
+[  554.901867]  <IRQ>
+[  554.901868]  dump_stack+0x6d/0x8b
+[  554.901883]  nmi_cpu_backtrace+0x94/0xa0
+[  554.901885]  ? lapic_can_unplug_cpu+0xb0/0xb0
+[  554.901886]  nmi_trigger_cpumask_backtrace+0xe7/0x130
+[  554.901887]  arch_trigger_cpumask_backtrace+0x19/0x20
+[  554.901888]  rcu_dump_cpu_stacks+0xa3/0xd5
+[  554.901888]  rcu_check_callbacks+0x6cd/0x8e0
+[  554.901889]  ? tick_sched_do_timer+0x50/0x50
+[  554.901890]  update_process_times+0x2f/0x60
+[  554.901891]  tick_sched_handle+0x26/0x70
+[  554.901892]  ? tick_sched_do_timer+0x42/0x50
+[  554.901892]  tick_sched_timer+0x39/0x80
+[  554.901893]  __hrtimer_run_queues+0xdf/0x230
+[  554.901894]  hrtimer_interrupt+0xa0/0x1d0
+[  554.901895]  smp_apic_timer_interrupt+0x6f/0x140
+[  554.901896]  apic_timer_interrupt+0x90/0xa0
+[  554.901896]  </IRQ>
+[  554.901897] RIP: 0010:mutex_spin_on_owner+0x3b/0xa0
+[  554.901897] RSP: 0018:ffffc0c700457c50 EFLAGS: 00010246 ORIG_RAX: ffffffffffffff11
+[  554.901898] RAX: 0000000000000000 RBX: ffffffffb96ead4c RCX: 0000000000000000
+[  554.901912] RDX: 0000000000000000 RSI: ffff9f8b76852b80 RDI: 0000000000000001
+[  554.901913] RBP: ffffc0c700457c50 R08: ffffffffb96ead40 R09: ffffffffc00de000
+[  554.901913] R10: ffffc0c700457cf8 R11: ffffffffff000000 R12: ffffffffc00d5dc0
+[  554.901914] R13: 0000000000000002 R14: ffffffffb96ead40 R15: ffffffffb96ead40
+[  554.901916]  __mutex_lock.isra.5+0xad/0x4e0
+[  554.901917]  ? layout_and_allocate+0xd1b/0xeb0
+[  554.901917]  ? layout_and_allocate+0xbce/0xeb0
+[  554.901918]  __mutex_lock_slowpath+0x13/0x20
+[  554.901919]  ? __mutex_lock_slowpath+0x13/0x20
+[  554.901920]  mutex_lock+0x2f/0x40
+[  554.901921]  load_module+0x169/0x2000
+[  554.901922]  ? ima_post_read_file+0x96/0xa0
+[  554.901922]  ? security_kernel_post_read_file+0x71/0x80
+[  554.901923]  ? kernel_read_file+0x1a8/0x1d0
+[  554.901924]  SYSC_finit_module+0xfc/0x120
+[  554.901925]  ? SYSC_finit_module+0xfc/0x120
+[  554.901926]  SyS_finit_module+0xe/0x10
+[  554.901927]  do_syscall_64+0x73/0x130
+[  554.901928]  entry_SYSCALL_64_after_hwframe+0x41/0xa6
+[  554.901928] RIP: 0033:0x7fdb9b27f539
+[  554.901929] RSP: 002b:00007ffee7cde868 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+[  554.901929] RAX: ffffffffffffffda RBX: 000056479bda4d70 RCX: 00007fdb9b27f539
+[  554.901930] RDX: 0000000000000000 RSI: 00007fdb9af5e105 RDI: 0000000000000005
+[  554.901930] RBP: 00007fdb9af5e105 R08: 0000000000000000 R09: 000056479bd94a60
+[  554.901931] R10: 0000000000000005 R11: 0000000000000246 R12: 0000000000000000
+[  554.901931] R13: 000056479bda5300 R14: 0000000000020000 R15: 000056479bda4d70
+[  555.479156] Fusion MPT base driver 3.04.20
+[  555.482397] Copyright (c) 1999-2008 LSI Corporation
+[  555.495610] e1000: Intel(R) PRO/1000 Network Driver - version 7.3.21-k8-NAPI
+[  555.500836] e1000: Copyright (c) 1999-2006 Intel Corporation.
+[  555.747316] random: fast init done
+[  555.755914] random: systemd-udevd: uninitialized urandom read (16 bytes read)
+[  555.762385] random: systemd-udevd: uninitialized urandom read (16 bytes read)
+[  555.767490] random: systemd-udevd: uninitialized urandom read (16 bytes read)
+[  555.772631] input: ImExPS/2 Generic Explorer Mouse as /devices/platform/i8042/serio1/input/input4
+[  556.098135] e1000 0000:00:03.0 eth0: (PCI:33MHz:32-bit) 02:a0:66:c7:c8:08
+[  556.102622] e1000 0000:00:03.0 eth0: Intel(R) PRO/1000 Network Connection
+[  556.110073] e1000 0000:00:03.0 enp0s3: renamed from eth0
+Begin: Loading essential drivers ... 
